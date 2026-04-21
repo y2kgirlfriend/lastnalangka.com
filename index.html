@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Journey | Working Student Portfolio</title>
+  <style>
+    :root {
+      --bg: #f8f5f0;
+      --bg-soft: #efe3d3;
+      --card: rgba(255,255,255,0.88);
+      --text: #4e3d35;
+      --muted: #7a675e;
+      --accent: #c8a98d;
+      --accent-2: #d9c2f0;
+      --line: rgba(120, 103, 94, 0.18);
+      --shadow: 0 10px 30px rgba(116, 94, 82, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #fffdfb, #f7efe5, #f2ebfb);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, video {
+      max-width: 100%;
+      display: block;
+      border-radius: 14px;
+      height: auto;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 250, 245, 0.88);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      row-gap: 10px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 0 40px;
+      background:
+        radial-gradient(circle at top right, rgba(217, 194, 240, 0.35), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(200, 169, 141, 0.28), transparent 30%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      background: rgba(217, 194, 240, 0.22);
+      border: 1px solid rgba(217, 194, 240, 0.45);
+      color: #8b6fa8;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: #5c463d;
+      color: #ffffff;
+      border: 2px solid #3f2f29;
+      box-shadow: 0 6px 18px rgba(63, 47, 41, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: #4a372f;
+      color: #ffffff;
+      border-color: #2f221d;
+    }
+
+    .btn:focus,
+    .btn:focus-visible {
+      outline: 3px solid #8b6fa8;
+      outline-offset: 3px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 4 / 4.3;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+
+    .hero-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .mini-card h4 {
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .mini-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 34px;
+      max-width: 760px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: #5c463d;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .media-box {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #f3ede7;
+    }
+
+    .media-box img,
+    .media-box video {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 12px;
+      background: rgba(217, 194, 240, 0.22);
+      color: #8b6fa8;
+      border: 1px solid rgba(217, 194, 240, 0.42);
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    details {
+      margin-top: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent);
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p,
+    details ul {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    details ul {
+      padding-left: 18px;
+    }
+
+    .professor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .prof-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .prof-media {
+      background: #f3ede7;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .prof-media img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border-radius: 0;
+    }
+
+    .attach-note {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      background: rgba(217, 194, 240, 0.18);
+      border: 1px dashed rgba(154, 123, 182, 0.35);
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+
+    .prof-body {
+      padding: 20px;
+    }
+
+    .prof-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      background: #f3ede7;
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.06);
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 14px;
+      background: linear-gradient(to top, rgba(2, 6, 23, 0.95), transparent);
+      font-size: 0.95rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(92, 70, 61, 0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+    }
+
+    .lightbox img,
+    .lightbox video {
+      width: 100%;
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 18px;
+      background: #000;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -12px;
+      right: -2px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: #fffdfb;
+      color: #5c463d;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 32px 0 50px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 10px;
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #9a7bb6;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 56px 0;
+      }
+
+      .container {
+        width: min(94%, 760px);
+      }
+
+      .hero {
+        padding: 44px 0 24px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero-info {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .media-box img,
+      .media-box video,
+      .gallery-item img,
+      .gallery-item video,
+      .prof-media img {
+        height: 220px;
+      }
+
+      .card-content,
+      .prof-body,
+      .hero-card {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 94%;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.45rem, 7vw, 2rem);
+      }
+
+      .media-box img,
+      .media-box video,
+      .gallery-item img,
+      .gallery-item video,
+      .prof-media img {
+        height: 190px;
+      }
+
+      .close-btn {
+        top: -8px;
+        right: 0;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        width: min(92%, 980px);
+      }
+
+      .media-box img,
+      .media-box video,
+      .gallery-item img,
+      .gallery-item video,
+      .prof-media img {
+        height: 240px;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .container {
+        width: min(1150px, 92%);
+      }
+    }
+
+      .hero-info {
+        grid-template-columns: 1fr;
+      }
+
+      .media-box img,
+      .media-box video,
+      .gallery-item img,
+      .gallery-item video {
+        height: 210px;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">My Journey</div>
+      <nav class="nav-links">
+        <a href="#about">About Me</a>
+        <a href="#education">Education</a>
+        <a href="#professionalism">Professionalism & Skills</a>
+        <a href="#professors">My Professors</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="about">
+    <div class="container hero-grid">
+      <div>
+        <h1>Hello, I’m <span>Faye Claire Caitom</span></h1>
+        <p>
+          I am a hardworking and determined working student who continues to pursue my dreams despite the many challenges in life. In the morning, I work as an agent in the BPO industry, and in the evening, I dedicate my time to being a student. I have also been a Virtual Assistant for almost three years, which has taught me discipline, adaptability, communication, and resilience.
+        </p>
+        <p>
+          My journey is not easy, but it is meaningful. Every obstacle I face becomes another reason to move forward, grow stronger, and believe in the future I am building for myself. I carry my responsibilities with faith, courage, and the hope that all my sacrifices today will become the success I am praying for tomorrow.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#education">View My Journey</a>
+          <a class="btn btn-secondary" href="#professors">My Professors</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img class="profile-photo" src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/672686941_1515177873522308_1665984137390918298_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeGtXVb37-AS2-iiKefeJLxY-LS4Au3L5fP4tLgC7cvl80ti-nAV3Ns2R3nGdomCMGQK2qKErHF_oGunnWB6Vegh&_nc_ohc=kDP1fbnnKHkQ7kNvwHhbuGc&_nc_oc=AdrfQBlIOKosAXG8qjYSe_5KdEG3qTtCDQo_Z5qJSNur3WCCby2UAmBfMqVfnjzxqYo&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=0i-kmGlEXjCy18c5I66Yyg&_nc_ss=7a3a8&oh=00_Af0AhzhfstUJeH9VBgeT46PUE5rt_l5vfxyOkrzTPeFWlQ&oe=69EBF211" alt="Profile photo placeholder" />
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">My Educational History</h2>
+      <p class="section-subtitle">
+
+      <div class="cards">
+        <article class="card">
+          <div class="media-box">
+            <img src="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/673476975_1515177816855647_8072401043184377308_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeH9y8RapiYTQHN-bbsHfG_DgCB4StsxyiCAIHhK2zHKIOHlyJTm4YxLrIZaGr3Wer9MYu2GfikU1Z48VuPRcU0p&_nc_ohc=FoOp0o88XnwQ7kNvwG-L256&_nc_oc=AdqxasA94zG6yjBvgksTIL0z3OQVhjfBDg5K6RTiHqcCG4VAiso1VMFPvzRfURe4ImA&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=HsWOMqWWjUzpEP87SIfh8w&_nc_ss=7a3a8&oh=00_Af3EQtHc3O_twpqSGdgHXf24s8RJAe4N-x6lqyC3T30ZBQ&oe=69EBF2CF" alt="Don Vicente Rama Memorial Elementary School placeholder" />
+          </div>
+          <div class="card-content">
+            <h3>Primary Education</h3>
+            <p><strong>Don Vicente Rama Memorial Elementary School - DVRMES</strong></p>
+            <p>
+              This is where my educational journey began. My elementary years became the foundation of my discipline, curiosity, and love for learning. The memories I made here remain a special part of who I am today.
+            </p>
+            
+          <details>
+              <img src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/675331428_1515178326855596_8236337983764506752_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEekjy3Ckt8EgCqHzdIpYzpThBsPgTViclOEGw-BNWJySSbUMWLcy49A6BalH3NuAGVhigrtKGAKbLTLe6XDhg6&_nc_ohc=LmHdGJLNpFoQ7kNvwHmQMVo&_nc_oc=Adpbojql6DUx32HMGUd7tM5pOsdqQGe6JAzM2wi5atsFC9T5yDqzuYXXurnTqUgL-NE&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=gFJarXBBmrZ_c24pBzbm4Q&_nc_ss=7a3a8&oh=00_Af1kTpSXWNPQQKZYshcFBs3OWu2mPiRFQY4bmmV51S1tKw&oe=69EBE91F" alt="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/675331428_1515178326855596_8236337983764506752_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEekjy3Ckt8EgCqHzdIpYzpThBsPgTViclOEGw-BNWJySSbUMWLcy49A6BalH3NuAGVhigrtKGAKbLTLe6XDhg6&_nc_ohc=LmHdGJLNpFoQ7kNvwHmQMVo&_nc_oc=Adpbojql6DUx32HMGUd7tM5pOsdqQGe6JAzM2wi5atsFC9T5yDqzuYXXurnTqUgL-NE&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=gFJarXBBmrZ_c24pBzbm4Q&_nc_ss=7a3a8&oh=00_Af1kTpSXWNPQQKZYshcFBs3OWu2mPiRFQY4bmmV51S1tKw&oe=69EBE91F" />
+              <img src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/675407039_1515178536855575_5732250235844583327_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFhrutCMzPo0eL1PDPgkwdSpaCF5PGU1RyloIXk8ZTVHO9Em_qc2HhoDo-NwvjOxm21hBSs7jLIrX3AGhRzww5s&_nc_ohc=Xrmb2wZ_X3kQ7kNvwGA5_2q&_nc_oc=Adr8CAgJskNmELo5Yh60ze-CJ-1GBQ1T1fLhqYbAhb-YtfqBQkfOW6Fhn1ROYz07uoI&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=hmvrF0vWHVg36s4Y0O-3hA&_nc_ss=7a3a8&oh=00_Af0XqdDn7aAVVTNFN38qcRcbybH7zteZWeZnvZvNPLzBNg&oe=69EBE775" alt="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/675407039_1515178536855575_5732250235844583327_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFhrutCMzPo0eL1PDPgkwdSpaCF5PGU1RyloIXk8ZTVHO9Em_qc2HhoDo-NwvjOxm21hBSs7jLIrX3AGhRzww5s&_nc_ohc=Xrmb2wZ_X3kQ7kNvwGA5_2q&_nc_oc=Adr8CAgJskNmELo5Yh60ze-CJ-1GBQ1T1fLhqYbAhb-YtfqBQkfOW6Fhn1ROYz07uoI&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=hmvrF0vWHVg36s4Y0O-3hA&_nc_ss=7a3a8&oh=00_Af0XqdDn7aAVVTNFN38qcRcbybH7zteZWeZnvZvNPLzBNg&oe=69EBE775" />
+              <img src="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/674550736_1515178560188906_3497335111191591541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEcBF6W6kq9a62iiRuJbVWoOa9CzgZfEXU5r0LOBl8RdfBFa45MU4htLZUDmrT18WLKk03L-CxhLWcaubpj5zdz&_nc_ohc=_yQogdHRvWgQ7kNvwFAAF-6&_nc_oc=AdogBMLzPFVK_Eo3TIDnwVLeNHAqdFSOuSawj1EmsoqNukOfmDPAB0VRTCVik0CnQQ0&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=MplsZPYJGrF1ZEZbO1im7g&_nc_ss=7a3a8&oh=00_Af2DXD5L8XzpOKjCadCVBVq-jX-HpSJYpJe-9muZ2cNKsg&oe=69EC1356" alt="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/674550736_1515178560188906_3497335111191591541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEcBF6W6kq9a62iiRuJbVWoOa9CzgZfEXU5r0LOBl8RdfBFa45MU4htLZUDmrT18WLKk03L-CxhLWcaubpj5zdz&_nc_ohc=_yQogdHRvWgQ7kNvwFAAF-6&_nc_oc=AdogBMLzPFVK_Eo3TIDnwVLeNHAqdFSOuSawj1EmsoqNukOfmDPAB0VRTCVik0CnQQ0&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=MplsZPYJGrF1ZEZbO1im7g&_nc_ss=7a3a8&oh=00_Af2DXD5L8XzpOKjCadCVBVq-jX-HpSJYpJe-9muZ2cNKsg&oe=69EC1356" />
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media-box">
+            <video controls poster="https://via.placeholder.com/800x500?text=Southwestern+University+Memories">
+              <source src="C:\Users\Melkee Mae\Videos\Videos\SWU.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>Secondary Education</h3>
+            <p><strong>Southwestern University</strong></p>
+            <p>
+              My secondary years were filled with growth, self-discovery, and unforgettable memories. This chapter of my life taught me perseverance, friendship, and the courage to prepare for bigger dreams.
+            </p>
+          
+            <details>
+              <img src="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/672467052_1515177676855661_6247499325417100903_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEVU9eEnrW3E7yzfbro5wIJBF7P41fzcpwEXs_jV_NynHKyr3uU_sTbO6vVHWmG1eHxD79ry5n9vpHQ2oCKM_vG&_nc_ohc=pwGnhWjI5twQ7kNvwEvj9h-&_nc_oc=AdqUq5AnB-_m2iJK3rNwVBwjIE6vmFtzfn-EQFgRaP_IgG8v9OBGgC0pkCQ2OMHiltI&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=SevQIU42I9vTrd-BXTSF_w&_nc_ss=7a3a8&oh=00_Af3KGoqFGpIRAu_1mWxnjuUFXtM_a3AA7jpVPO_oVOmXsg&oe=69EBFCA0" alt="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/672467052_1515177676855661_6247499325417100903_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEVU9eEnrW3E7yzfbro5wIJBF7P41fzcpwEXs_jV_NynHKyr3uU_sTbO6vVHWmG1eHxD79ry5n9vpHQ2oCKM_vG&_nc_ohc=pwGnhWjI5twQ7kNvwEvj9h-&_nc_oc=AdqUq5AnB-_m2iJK3rNwVBwjIE6vmFtzfn-EQFgRaP_IgG8v9OBGgC0pkCQ2OMHiltI&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=SevQIU42I9vTrd-BXTSF_w&_nc_ss=7a3a8&oh=00_Af3KGoqFGpIRAu_1mWxnjuUFXtM_a3AA7jpVPO_oVOmXsg&oe=69EBFCA0" />
+              <img src="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/673722217_1515177670188995_4395614745524385373_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHL2nVubk90ps7Sf_l1zdnQe9chzxb3l8l71yHPFveXyXkXoZYkXARGYDzU49i1RVsqW0t_Z-XL-w3Nu4Na9UnA&_nc_ohc=aK-kJBx8UWgQ7kNvwExwCS5&_nc_oc=Adp5p9RcvSb7zjA4yMnmA2HNLBrTCawNhF-I7vEJPDgFAmAWUHj8NjCLAlAFQAPqti4&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=3m5_1X8blUcxOpa5KMNb1Q&_nc_ss=7a3a8&oh=00_Af00jKluBzWrkdDigqzvz0C9l0pE7-HThDoPlwRBFm4nFg&oe=69EBE066" alt="https://scontent.fmnl8-1.fna.fbcdn.net/v/t39.30808-6/673722217_1515177670188995_4395614745524385373_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHL2nVubk90ps7Sf_l1zdnQe9chzxb3l8l71yHPFveXyXkXoZYkXARGYDzU49i1RVsqW0t_Z-XL-w3Nu4Na9UnA&_nc_ohc=aK-kJBx8UWgQ7kNvwExwCS5&_nc_oc=Adp5p9RcvSb7zjA4yMnmA2HNLBrTCawNhF-I7vEJPDgFAmAWUHj8NjCLAlAFQAPqti4&_nc_zt=23&_nc_ht=scontent.fmnl8-1.fna&_nc_gid=3m5_1X8blUcxOpa5KMNb1Q&_nc_ss=7a3a8&oh=00_Af00jKluBzWrkdDigqzvz0C9l0pE7-HThDoPlwRBFm4nFg&oe=69EBE066" />
+              <img src="https://scontent.fmnl8-4.fna.fbcdn.net/v/t39.30808-6/675158368_1515178213522274_8450587781078281652_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFYl-04ZIP6qhwzzccsYJBuJNQ5f81UKK4k1Dl_zVQorlAOa6xgai3AYTtUVOJMksObF6DF7PBieLkcH9IP3EQf&_nc_ohc=PAMMbXIzxyUQ7kNvwFqSFhz&_nc_oc=AdoA4GeVM6cKabiRb3MiQwymIv8yCAtW3pRhun7qFhc_j_ykUsKyeNsKI5KY1RGyD4E&_nc_zt=23&_nc_ht=scontent.fmnl8-4.fna&_nc_gid=DfXxCMx4MYPw9ZeXihFtIg&_nc_ss=7a3a8&oh=00_Af10Fs3laTcEBfTWE04G-XT7Pyitab07CTbJ-f-GQbAHow&oe=69EBDFC4" alt="https://scontent.fmnl8-4.fna.fbcdn.net/v/t39.30808-6/675158368_1515178213522274_8450587781078281652_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFYl-04ZIP6qhwzzccsYJBuJNQ5f81UKK4k1Dl_zVQorlAOa6xgai3AYTtUVOJMksObF6DF7PBieLkcH9IP3EQf&_nc_ohc=PAMMbXIzxyUQ7kNvwFqSFhz&_nc_oc=AdoA4GeVM6cKabiRb3MiQwymIv8yCAtW3pRhun7qFhc_j_ykUsKyeNsKI5KY1RGyD4E&_nc_zt=23&_nc_ht=scontent.fmnl8-4.fna&_nc_gid=DfXxCMx4MYPw9ZeXihFtIg&_nc_ss=7a3a8&oh=00_Af10Fs3laTcEBfTWE04G-XT7Pyitab07CTbJ-f-GQbAHow&oe=69EBDFC4" />
+          </div>
+          </article>
+ 
+        <article class="card">
+          <div class="media-box">
+            <video controls poster="https://via.placeholder.com/800x500?text=Cebu+Technological+University+Memories">
+              <source src="C:\Users\Melkee Mae\Videos\Videos\YTDown.com_YouTube_Tertiary-Education_Media_jutrEejzx1k_001_720p.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>Tertiary Education</h3>
+            <p><strong>Cebu Technological University — My Present School</strong></p>
+            <p>
+              As a college student at Cebu Technological University, I continue to chase my goals with determination and purpose. This season of my life represents sacrifice, growth, and the dream of creating a better future through education.
+            </p>
+            
+            <details>
+              <img src="https://scontent.fmnl8-4.fna.fbcdn.net/v/t39.30808-6/673420378_1515177773522318_1112402171307627776_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeE2wBf-1t1TLbmEsboFsHluc_9bHKSmB15z_1scpKYHXhi10XD_IJl1fPW3KcqpUrBhX2E3GT4kSmRIS5xPfZVL&_nc_ohc=bnm-ugdgDuEQ7kNvwE6oWU4&_nc_oc=Adqy8L7egR0sCY5r0VlPLGYE7WB747rrjb5YhDPCrQuUvkBKSRHwZ1DWv9927xN6CVY&_nc_zt=23&_nc_ht=scontent.fmnl8-4.fna&_nc_gid=2onNNFEclbXJVMBwOCAa8g&_nc_ss=7a3a8&oh=00_Af2pH3qgPgD_qtJIqzd6QDDFTbXI3bPLUFD9dwddeTsXug&oe=69EBFF3D" alt="https://scontent.fmnl8-4.fna.fbcdn.net/v/t39.30808-6/673420378_1515177773522318_1112402171307627776_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeE2wBf-1t1TLbmEsboFsHluc_9bHKSmB15z_1scpKYHXhi10XD_IJl1fPW3KcqpUrBhX2E3GT4kSmRIS5xPfZVL&_nc_ohc=bnm-ugdgDuEQ7kNvwE6oWU4&_nc_oc=Adqy8L7egR0sCY5r0VlPLGYE7WB747rrjb5YhDPCrQuUvkBKSRHwZ1DWv9927xN6CVY&_nc_zt=23&_nc_ht=scontent.fmnl8-4.fna&_nc_gid=2onNNFEclbXJVMBwOCAa8g&_nc_ss=7a3a8&oh=00_Af2pH3qgPgD_qtJIqzd6QDDFTbXI3bPLUFD9dwddeTsXug&oe=69EBFF3D" />
+              <img src="https://scontent.fmnl8-2.fna.fbcdn.net/v/t39.30808-6/672687592_1515178256855603_4208914413917812483_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEUN7qfrSqg4P9ldq49jwx8nD2plgFjaDScPamWAWNoNCyRpgFujI5oKgo9zebqM28m0sYwii4HwQS7zht_r8A0&_nc_ohc=jpwHT7REK68Q7kNvwHrrMO1&_nc_oc=Adow2Oncy8XhM1HS4cSg1Iqdc_y_uNvB-F_HItrfFPVUQC0ftkkvDaw0NIAlb_mqAAI&_nc_zt=23&_nc_ht=scontent.fmnl8-2.fna&_nc_gid=yVe3jH-2r9zFwi3b5Jn86g&_nc_ss=7a3a8&oh=00_Af1eqz85JM_BvAjQNaXAPBdRCzEKN8I7cRAhL7FR2dfGgA&oe=69EBE609" alt="https://scontent.fmnl8-2.fna.fbcdn.net/v/t39.30808-6/672687592_1515178256855603_4208914413917812483_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEUN7qfrSqg4P9ldq49jwx8nD2plgFjaDScPamWAWNoNCyRpgFujI5oKgo9zebqM28m0sYwii4HwQS7zht_r8A0&_nc_ohc=jpwHT7REK68Q7kNvwHrrMO1&_nc_oc=Adow2Oncy8XhM1HS4cSg1Iqdc_y_uNvB-F_HItrfFPVUQC0ftkkvDaw0NIAlb_mqAAI&_nc_zt=23&_nc_ht=scontent.fmnl8-2.fna&_nc_gid=yVe3jH-2r9zFwi3b5Jn86g&_nc_ss=7a3a8&oh=00_Af1eqz85JM_BvAjQNaXAPBdRCzEKN8I7cRAhL7FR2dfGgA&oe=69EBE609" />
+              <img src="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/672687592_1515178296855599_4450191356343262291_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEBu-_Y-2-47BcbbofTr69IjZ5BpDNqAwGNnkGkM2oDAZKPMrP6CI9qwDmr05qH431INjlqiHVed03EawAGekLu&_nc_ohc=XRbTEj2sQXIQ7kNvwGdmqGo&_nc_oc=AdozkUfhbWfP4NFJFooikx4A78BtEgnKtuY-KP8EMPDMr16evCroP_3Ki1P0pEb3fXA&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=8f7P3-iN3G00U-oG1u3lag&_nc_ss=7a3a8&oh=00_Af2Y0Gg4wvg8OGLAe92ehNf89F1b5hAXjn2ai44yYSNxPw&oe=69EC0017" alt="https://scontent.fmnl8-3.fna.fbcdn.net/v/t39.30808-6/672687592_1515178296855599_4450191356343262291_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEBu-_Y-2-47BcbbofTr69IjZ5BpDNqAwGNnkGkM2oDAZKPMrP6CI9qwDmr05qH431INjlqiHVed03EawAGekLu&_nc_ohc=XRbTEj2sQXIQ7kNvwGdmqGo&_nc_oc=AdozkUfhbWfP4NFJFooikx4A78BtEgnKtuY-KP8EMPDMr16evCroP_3Ki1P0pEb3fXA&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&_nc_gid=8f7P3-iN3G00U-oG1u3lag&_nc_ss=7a3a8&oh=00_Af2Y0Gg4wvg8OGLAe92ehNf89F1b5hAXjn2ai44yYSNxPw&oe=69EC0017" />
+          </div>
+          </article>
+
+            </details>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="professionalism">
+    <div class="container">
+      <h2 class="section-title">My Professionalism & Skills</h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="media-box">
+          <video controls poster="https://via.placeholder.com/800x500?text=Skills+and+Tasks">
+              <source src="C:\Users\Melkee Mae\Videos\Videos\Professional Growth.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>Professional Growth</h3>
+            <p>
+              Working while studying has taught me the true meaning of time management, responsibility, and commitment. I learned how to stay focused under pressure while continuing to improve myself each day.
+            </p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                I have developed a strong sense of professionalism by balancing multiple responsibilities. My journey has trained me to be dependable, adaptable, and eager to learn. Whether in academics or in the workplace, I strive to bring excellence, discipline, and integrity to every task I handle.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media-box">
+            <video controls poster="https://via.placeholder.com/800x500?text=Skills+and+Tasks">
+              <source src="C:\Users\Melkee Mae\Videos\Videos\My skills.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>My Skills</h3>
+            <p>
+              My work experiences helped me build practical and valuable skills that I continue to use in both professional and academic settings.
+            </p>
+            <details>
+              <summary>See more</summary>
+              <ul>
+                <li>Excellent communication skills</li>
+                <li>Customer service and client support</li>
+                <li>Time management and multitasking</li>
+                <li>Administrative and Virtual Assistant tasks</li>
+                <li>Problem-solving and adaptability</li>
+                <li>Teamwork and professionalism</li>
+                <li>Basic organization, scheduling, and data handling</li>
+              </ul>
+            </details>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media-box">
+            <video controls poster="https://via.placeholder.com/800x500?text=Skills+and+Tasks">
+              <source src="C:\Users\Melkee Mae\Videos\Videos\My Work Description.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card-content">
+            <h3>My Work Description</h3>
+            <p>
+              My career journey is a reflection of perseverance and hard work. Each responsibility I handled taught me lessons that continue to shape the person I am becoming.
+            </p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                As a BPO agent, I learned how to communicate effectively, remain calm under pressure, and provide quality support to customers. As a Virtual Assistant for almost three years, I gained experience in handling tasks with accuracy, efficiency, and attention to detail. These roles helped strengthen my confidence and prepared me to face bigger opportunities in the future.
+              </p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="professors">
+    <div class="container">
+      <h2 class="section-title">My Professors in CTU - Main Campus</h2>
+      <p class="section-subtitle">
+        These professors have been part of my academic journey, helping guide me through learning, growth, and inspiration in college.
+      </p>
+
+      <div class="professor-grid">
+        <article class="prof-card">
+          <div class="prof-media">
+            <img src="https://scontent.fmnl8-6.fna.fbcdn.net/v/t39.30808-6/673195299_1515178363522259_5340088384579598413_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFGhh0ZDNN3fiXAY84tH6UyvHMVYJVFXTC8cxVglUVdMO3yHhrqcKZgg8WgexiggGFygNcOhYhHUqY85mHUZDwT&_nc_ohc=YTYEF1n2nz4Q7kNvwGEZiJe&_nc_oc=AdpJs4a5jxEQKIO9XNZM0SDR7BM7npj_vNhLeAzK9QXdwxqS9FAcdfeqVVF0mY07DQw&_nc_zt=23&_nc_ht=scontent.fmnl8-6.fna&_nc_gid=-mM3h8aayC8CHhy30WZbkQ&_nc_ss=7a3a8&oh=00_Af35GJJQZP25wiyd00RLQQOKI5P3QtJXJ-uiI2jZrIYEsw&oe=69EC093C" alt="Mr. Marcial Pepito photo placeholder" />
+          </div>
+          <div class="prof-body">
+            <h3>Mr. Marcial Pepito</h3>
+            <p>A valued professor who has contributed to my learning journey with guidance, knowledge, and encouragement.</p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                Mr. Marcial Pepito is one of the professors I appreciate in CTU because of his role in helping students gain knowledge and develop discipline in their studies. His teaching presence inspires students to take their academic responsibilities seriously.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="prof-card">
+          <div class="prof-media">
+            <img src="https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/672686716_1515178066855622_1461339628549730290_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeGGW5rYkHrMC_Oq3Cc_GnufDBFlXhu5jSwMEWVeG7mNLLaAg0Opsra8B2taFqUCowEmpxgR5xgb1manMYKwzbpc&_nc_ohc=1cV9HpMWVCAQ7kNvwE1JQaw&_nc_oc=Adr5kaPTdseuF6qLxZvi4-mUJ2YoFD5oEuqrJhzoNlnCDiCS9IVinm3m5HWCVH-NS7I&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=oDqQXiiRSePDHa9nFK-arw&_nc_ss=7a3a8&oh=00_Af3jxc2ntK4ZFCMZOTSciev6VL0QUNFjsc-LnF0-pcvcig&oe=69EBEC75" alt="Mr. Harold Arante photo placeholder" />
+          </div>
+          <div class="prof-body">
+            <h3>Mr. Harold Arante</h3>
+            <p>A professor who has been part of my college growth through his support, instruction, and dedication to student learning.</p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                Mr. Harold Arante has contributed to my academic development by sharing lessons that encourage growth and deeper understanding. His efforts as an educator help students become more focused, capable, and prepared.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="prof-card">
+          <div class="prof-media">
+            <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/678496720_1515178113522284_3392475829264487737_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFkXG7w2BzBdJXEQbyFJm7GWF8dsuiMnVFYXx2y6IydUbYbPuVISo-rBva4a85VCSdVyj4YX9ji96Yh0OFQI5K9&_nc_ohc=thD9aZ4oKJkQ7kNvwEMRMEP&_nc_oc=AdrgfL8ZhPT8X2Fl6YTXVf7lTvuib-82UU8u6xrNzDklIPSKj4z64oA-p9QlDHmgL3k&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=PgQzXwl21bDQ769JwYbe6Q&_nc_ss=7a3a8&oh=00_Af0x5AaF8lcHXr0mwJsPj_Asu8AKQVnZh5GwFHcK6wOFsw&oe=69EBE681" alt="Mrs. Rechel photo placeholder" />
+          </div>
+          <div class="prof-body">
+            <h3>Mrs. Rechel Edison Roble</h3>
+            <p>A respected professor whose teaching and presence continue to be part of my meaningful journey in college.</p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                Mrs. Rechel is one of the professors I appreciate for her dedication and contribution to student learning. Her guidance helps create a learning environment where students can continue to grow academically and personally.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="prof-card">
+          <div class="prof-media">
+            <img src="https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/675510897_1515178143522281_4933437881926578127_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeERX1pJ25i0EUSuLa-Fjd1Y5SZx2wnIKeTlJnHbCcgp5Ohv9OLJbqUmQCIdjQYfyS4LIdvMbPM3HoNiLn4bmJKj&_nc_ohc=9jOcaK0y2H4Q7kNvwEtTyrt&_nc_oc=AdopY5qYJ51vVn8rz8s75YolZ_-n_jc3Q7_JZ1ETALFMDtBsxTp_cptN7IK8I1B8cag&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=1HNaJFB7cGatFHN2srKN7w&_nc_ss=7a3a8&oh=00_Af3xZL7VVfOUkzIrfmd1UkgQ_xIqaDWEjmcdNJ6s-5j05w&oe=69EBF3B8" alt="Mr. Mark Jay Cogollodo photo placeholder" />
+          </div>
+          <div class="prof-body">
+            <h3>Mr. Mark Jay Cogollodo</h3>
+            <p>A professor whose dedication to teaching has positively influenced my college experience and academic progress.</p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                Mr. Mark Jay Cogollodo has been a meaningful part of my educational journey in CTU. His role as a professor reflects commitment, knowledge, and support that encourage students like me to keep learning and striving for excellence.
+              </p>
+            </details>
+          </div>
+        </article>
+
+        <article class="prof-card">
+          <div class="prof-media">
+            <img src="https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/678249042_1515178193522276_4364223843180270912_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeE0j5NZp0ybd7FgUNo5EPctVxF7ZrN_C41XEXtms38LjfyVpWnbROML412gCjlolMitsjEs_132jZmQHEMQaehz&_nc_ohc=ykkFB1DJBG0Q7kNvwGXC-vf&_nc_oc=Adp3dmGn2UxZAekA0_TMv8RVlmCSCdE0jvM7GtOztV1LaKeLktD4BENbL2eXIDNfhyE&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=oo5iXRI6phs80tPUiGiuTA&_nc_ss=7a3a8&oh=00_Af1vAQWmbmgX9RDuhlnxHwyIHqAHQYdwr8tX0x4ezC6kRw&oe=69EC0C1E" alt="Mr. Charleston Naya photo placeholder" />
+          </div>
+          <div class="prof-body">
+            <h3>Mr. Charleston Naya</h3>
+            <p>A professor who has inspired learning and growth through his guidance and valuable contribution to my college life.</p>
+            <details>
+              <summary>See more</summary>
+              <p>
+                Mr. Charleston Naya is one of the educators I am grateful for in my CTU journey. His support and teaching help students stay inspired, improve their skills, and continue aiming for their goals.
+              </p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Created with passion, purpose, and perseverance.</p>
+      <p>© 2026 My Journey. Payeeee. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content" id="lightboxContent">
+      <button class="close-btn" id="closeLightbox">×</button>
+    </div>
+  </div>
+
+  <script>
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const closeLightbox = document.getElementById('closeLightbox');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const type = item.dataset.type;
+        const src = item.dataset.src;
+
+        const oldMedia = lightboxContent.querySelector('img, video');
+        if (oldMedia) oldMedia.remove();
+
+        let media;
+        if (type === 'video' && src) {
+          media = document.createElement('video');
+          media.src = src;
+          media.controls = true;
+          media.autoplay = true;
+        } else if (type === 'video' && !src) {
+          media = document.createElement('img');
+          media.src = 'https://via.placeholder.com/1200x800?text=Add+Your+Video+Link+in+HTML';
+          media.alt = 'Video placeholder';
+        } else {
+          media = document.createElement('img');
+          media.src = src;
+          media.alt = 'Expanded memory';
+        }
+
+        lightboxContent.appendChild(media);
+        lightbox.classList.add('active');
+      });
+    });
+
+    closeLightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      const media = lightboxContent.querySelector('img, video');
+      if (media && media.tagName === 'VIDEO') media.pause();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        const media = lightboxContent.querySelector('img, video');
+        if (media && media.tagName === 'VIDEO') media.pause();
+      }
+    });
+  </script>
+</body>
+</html>
